@@ -27,3 +27,8 @@ export function validateUrls(rows: Array<Row>): Array<Row> {
 
     return newList;
 }
+
+export function die(message: string): void {
+    console.log(chalk.bgRed(message));
+    process.exit(-1);
+}
