@@ -88,12 +88,12 @@ export function askPaste(): Record<string, any> {
     return inquirer.prompt(questions);
 }
 
-export function confirmImport(total: number, db: string): Record<string, any> {
+export function confirm(msg: string): Record<string, any> {
     const questions = [
         {
             name: 'confirm',
             type: 'confirm',
-            message: chalk.yellow(`Add ${total} block lists to ${db}?`),
+            message: chalk.yellow(msg),
             default: 'y',
         },
     ];
