@@ -12,8 +12,7 @@
   },
   "lint-staged": {
     "*.{ts,js}": [
-      "eslint --cache --fix",
-      "git add"
+      "eslint --cache --fix"
     ]
   },
   "bin": {
