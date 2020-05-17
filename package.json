@@ -16,7 +16,7 @@
     ]
   },
   "bin": {
-    "pihole5-add-lists": "./bin/index.js"
+    "pihole5-add-lists": "./dist/src/index.js"
   },
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.js",
