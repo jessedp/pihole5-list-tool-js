@@ -17,7 +17,7 @@ The source of each list is visible in the web interface and an option to load th
 This requires [NodeJS v10 or later](https://nodejs.org/).
 
 ```bash
-$ sudo npm install -g pihole5-list-tool
+$ sudo npm i -g pihole5-list-tool
 ```
 
 ## running
