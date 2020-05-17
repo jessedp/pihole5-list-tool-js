@@ -1,5 +1,5 @@
 {
-  "name": "pihole5-add-lists",
+  "name": "pihole5-list-tool",
   "version": "0.1.0",
   "description": "import add/block lists to pihole5",
   "scripts": {
