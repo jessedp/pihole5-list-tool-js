@@ -1,6 +1,6 @@
 {
   "name": "pihole5-add-lists",
-  "version": "0.1.0",
+  "version": "0.0.9",
   "description": "import add/block lists to pihole5",
   "scripts": {
     "build": "yarn lint && rm -rf ./dist && tsc -p ./tsconfig.json --declaration",
