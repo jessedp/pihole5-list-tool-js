@@ -34,10 +34,13 @@
     "import",
     "list",
     "block list",
+    "blocklist",
+    "blacklist",
     "adlist",
     "adlists",
     "gravity",
-    "add"
+    "firebog",
+    "firebog.net",
   ],
   "author": {
     "name": "jesse",
