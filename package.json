@@ -74,7 +74,7 @@
     "clui": "^0.3.6",
     "husky": "^4.2.5",
     "inquirer": "^7.1.0",
-    "sqlite3": "^4.2.0"
+    "sqlite-async": "^1.0.12"
   },
   "husky": {
     "hooks": {
