@@ -5,12 +5,12 @@ import * as chalk from 'chalk';
 import { exec } from 'child_process';
 import * as clear from 'clear';
 
-const sqlite3 = require('sqlite3').verbose();
+import sqlite = require('sqlite-async');
 
 import Axios from 'axios';
 import { askSetup, askImportFile, askPaste, confirm } from './inquirer';
 import { Row, sourceOptions } from './types';
-import { die, validateUrls } from './utils';
+import { die, asyncForEach, validateUrls } from './utils';
 
 import { version } from '../package.json';
 
@@ -19,7 +19,7 @@ clear();
 console.log(
     chalk.greenBright(`
     +--------------------------------------+
-    |       pihole 5 list adder ${version}      |
+    |       pihole 5 list tool  ${version}      |
     +--------------------------------------+
 `),
 );
@@ -83,6 +83,8 @@ const run = async (): Promise<void> => {
 
         const cleanList = validateUrls(importList);
 
+        if (cleanList.length === 0) die('No valid urls found, try again');
+
         let choice = await confirm(`Add ${cleanList.length} block lists to ${setup.gravitydb}?`);
 
         if (choice.confirm !== true) {
@@ -92,31 +94,35 @@ const run = async (): Promise<void> => {
 
         let db;
         try {
-            db = await new sqlite3.Database(setup.gravitydb, sqlite3.OPEN_READWRITE, (err) => {
-                if (err) {
-                    die(`Unable to connect to ${setup.gravitydb} - ${err}`);
-                }
-            });
+            db = await sqlite.open(setup.gravitydb, sqlite.OPEN_READWRITE);
         } catch (e) {
-            console.log('err!');
-            process.exit();
+            die(`Unable to connect to ${setup.gravitydb} - ${e}`);
         }
-        let cnt = 0;
+        let added = 0;
+        let exists = 0;
 
-        cleanList.forEach((item) => {
-            db.run(`INSERT OR IGNORE INTO adlist (address, comment) VALUES(?,?)`, [item.url, item.comment], (err) => {
-                if (err) {
-                    console.log(chalk.red(`Problem Inserting: ${err.message}`));
+        await asyncForEach(cleanList, async (item) => {
+            try {
+                const existing = await db.get('SELECT COUNT(*) AS cnt FROM adlist WHERE address = ?', item.url.trim());
+                if (existing.cnt > 0) {
+                    exists += 1;
                 } else {
-                    cnt += 1;
+                    await db.run(`INSERT OR IGNORE INTO adlist (address, comment) VALUES (?,?)`, [
+                        item.url,
+                        item.comment,
+                    ]);
+                    added += 1;
                 }
-                // get the last insert id == this.lastID?
-            });
+            } catch (e) {
+                console.log(chalk.red(`Problem Inserting: ${e.message}`));
+            }
         });
 
         db.close();
 
-        console.log(chalk.greenBright(`${cnt} block lists added!`));
+        console.log(chalk.greenBright(`${added} block lists added! ${exists} already existed.`));
+
+        if (added === 0) process.exit();
 
         choice = await confirm(`Update Gravity for immediate affect?`);
         if (choice.confirm === true) {
