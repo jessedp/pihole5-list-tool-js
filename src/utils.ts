@@ -32,3 +32,9 @@ export function die(message: string): void {
     console.log(chalk.bgRed(message));
     process.exit(-1);
 }
+
+export async function asyncForEach(array, callback) {
+    const promises = array.map(callback);
+    const vals = Promise.all(promises);
+    return vals;
+}
