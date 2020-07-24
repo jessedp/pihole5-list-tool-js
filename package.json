@@ -1,87 +1,91 @@
 {
-  "name": "pihole5-list-tool",
-  "version": "0.1.1",
-  "description": "import add/block lists to pihole5",
-  "scripts": {
-    "build": "yarn lint && rm -rf ./dist && tsc -p ./tsconfig.json --declaration",
-    "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
-    "test": "echo \"Error: no test specified\" && exit 0",
-    "prepare": "yarn lint && yarn build",
-    "prepublishOnly": "yarn test && yarn lint",
-    "preversion": "yarn run lint"
-  },
-  "lint-staged": {
-    "*.{ts,js}": [
-      "eslint --cache --fix"
-    ]
-  },
-  "bin": {
-    "pihole5-add-lists": "./dist/src/index.js"
-  },
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jessedp/pihole5-add-lists.git"
-  },
-  "files": [
-    "dist/**/*"
-  ],
-  "keywords": [
-    "pihole",
-    "pihole5",
-    "pihole 5",
-    "import",
-    "list",
-    "block list",
-    "blocklist",
-    "blacklist",
-    "adlist",
-    "adlists",
-    "gravity",
-    "firebog",
-    "firebog.net"
-  ],
-  "author": {
-    "name": "jesse",
-    "email": "jessedp@gmail.com"
-  },
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jessedp/pihole5-add-lists/issues"
-  },
-  "homepage": "https://github.com/jessedp/pihole5-add-lists#readme",
-  "devDependencies": {
-    "@types/debug": "^4.1.5",
-    "@types/node": "^14.0.1",
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
-    "eslint": "^7.0.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-prettier": "^3.1.3",
-    "lint-staged": "^10.2.2",
-    "prettier": "^2.0.5",
-    "tslint": "^6.1.2",
-    "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.9.2",
-    "yargs": "^15.3.1"
-  },
-  "dependencies": {
-    "@types/inquirer": "^6.5.0",
-    "@types/sqlite3": "^3.1.6",
-    "axios": "^0.19.2",
-    "chalk": "^4.0.0",
-    "clear": "^0.1.0",
-    "clui": "^0.3.6",
-    "husky": "^4.2.5",
-    "inquirer": "^7.1.0",
-    "sqlite-async": "^1.0.12"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
+    "name": "pihole5-list-tool",
+    "version": "0.1.1",
+    "description": "import add/block lists to pihole5",
+    "scripts": {
+        "build": "yarn lint && rm -rf ./dist && tsc -p ./tsconfig.json --declaration",
+        "lint": "eslint 'src/**/*.{js,ts,tsx}' --quiet --fix",
+        "test": "echo \"Error: no test specified\" && exit 0",
+        "prepare": "yarn lint && yarn build",
+        "prepublishOnly": "yarn test && yarn lint",
+        "preversion": "yarn run lint"
+    },
+    "lint-staged": {
+        "*.{ts,js}": [
+            "eslint --cache --fix"
+        ]
+    },
+    "bin": {
+        "pihole5-add-lists": "./dist/src/index.js"
+    },
+    "main": "dist/src/index.js",
+    "types": "dist/src/index.d.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jessedp/pihole5-add-lists.git"
+    },
+    "files": [
+        "dist/**/*"
+    ],
+    "keywords": [
+        "pihole",
+        "pihole5",
+        "pihole 5",
+        "import",
+        "list",
+        "block list",
+        "blocklist",
+        "blacklist",
+        "adlist",
+        "adlists",
+        "gravity",
+        "firebog",
+        "firebog.net"
+    ],
+    "author": {
+        "name": "jesse",
+        "email": "jessedp@gmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jessedp/pihole5-add-lists/issues"
+    },
+    "homepage": "https://github.com/jessedp/pihole5-add-lists#readme",
+    "devDependencies": {
+        "@types/debug": "^4.1.5",
+        "@types/node": "^14.0.1",
+        "@typescript-eslint/eslint-plugin": "^2.33.0",
+        "@typescript-eslint/parser": "^2.33.0",
+        "eslint": "^7.0.0",
+        "eslint-config-airbnb-base": "^14.1.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-import": "^2.20.2",
+        "eslint-plugin-prettier": "^3.1.3",
+        "lodash": "^4.17.19",
+        "lint-staged": "^10.2.2",
+        "prettier": "^2.0.5",
+        "tslint": "^6.1.2",
+        "tslint-config-prettier": "^1.18.0",
+        "typescript": "^3.9.2",
+        "yargs": "^15.3.1"
+    },
+    "dependencies": {
+        "@types/inquirer": "^6.5.0",
+        "@types/sqlite3": "^3.1.6",
+        "axios": "^0.19.2",
+        "chalk": "^4.0.0",
+        "clear": "^0.1.0",
+        "clui": "^0.3.6",
+        "husky": "^4.2.5",
+        "inquirer": "^7.1.0",
+        "sqlite-async": "^1.0.12"
+    },
+    "resolutions": {
+        "lodash": "^4.17.19"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
     }
-  }
 }
