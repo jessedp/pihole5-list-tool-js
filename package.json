@@ -72,7 +72,7 @@
     "dependencies": {
         "@types/inquirer": "^6.5.0",
         "@types/sqlite3": "^3.1.6",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "chalk": "^4.0.0",
         "clear": "^0.1.0",
         "clui": "^0.3.6",
